@@ -4,7 +4,7 @@ import { Button, ButtonGroup, createStyles, Grid, makeStyles } from '@material-u
 
 const useStyles = makeStyles(() => createStyles({
 	categorySelector: {
-		height: "10%"
+		height: "100%"
 	}
 }));
 

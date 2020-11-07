@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme) => createStyles({
 	root: {
 		height: "calc(100% - 64px)"
 	},
+	categorySelector: {
+		height: "10%"
+	},
 	description: {
 		padding: theme.spacing(3),
 		height: "90%"
@@ -25,7 +28,9 @@ const Main = (props: RouteComponentProps) => {
 
 	return (
 		<Grid container direction="column" className={classes.root}>
-			<Categories category={""} history={history} />
+			<Grid item className={classes.categorySelector}>
+				<Categories category={""} history={history} />
+			</Grid>
 			<Grid item container direction="column" className={classes.description} justify="space-around">
 				<Grid item container direction="column" justify="space-evenly" className={classes.paragraph}>
 					<Grid item>

@@ -6,6 +6,12 @@ import Categories from './categories';
 const useStyles = makeStyles((theme) => createStyles({
 	root: {
 		height: "calc(100% - 64px)"
+	},
+	categorySelector: {
+		height: "10%"
+	},
+	bookCards: {
+		height: "90%"
 	}
 }));
 
@@ -15,7 +21,11 @@ const Books = (props: RouteComponentProps) => {
 
 	return (
 		<Grid container direction="column" className={classes.root}>
-			<Categories category={"books"} history={history} />
+			<Grid item className={classes.categorySelector}>
+				<Categories category={"books"} history={history} />
+			</Grid>
+			<Grid item container direction="column" className={classes.bookCards} justify="space-around">
+			</Grid>
 		</Grid>
 	);
 };
