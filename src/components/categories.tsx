@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { History } from 'history';
 import { Button, ButtonGroup, createStyles, Grid, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(() => createStyles({
@@ -8,25 +9,26 @@ const useStyles = makeStyles(() => createStyles({
 }));
 
 interface CategoryProps {
-	onChange: (category: string) => void;
+	category: string;
+	history: History;
 };
 
-const Categories = ({ onChange }: CategoryProps) => {
+const Categories = ({ category, history }: CategoryProps) => {
 	const classes = useStyles();
-	const [selectedCategory, setCategory] = useState<string>("Home");
+	const [selectedCategory, setCategory] = useState<string>(category?.length > 0 ? category.charAt(0).toUpperCase() + category.slice(1) : "");
 
 	useEffect(() => {
-		onChange(selectedCategory);
-	}, [selectedCategory, onChange]);
+		history.push(`/${selectedCategory.toLowerCase()}`);
+	}, [selectedCategory, history]);
 
 	return (
 		<Grid container direction="row" justify="center" alignItems="center" className={classes.categorySelector}>
 			<ButtonGroup color="secondary" aria-label="lotr category selector">
 				{
-					["Home", "Characters", "Books", "Movies"].map((catName, idx) => (
+					["", "Characters", "Books", "Movies"].map((catName, idx) => (
 						<Button key={idx} variant={selectedCategory === catName ? "contained" : "outlined"} onClick={() => setCategory(catName)}>
 							{
-								catName
+								catName !== "" ? catName : "Home"
 							}
 						</Button>
 					))

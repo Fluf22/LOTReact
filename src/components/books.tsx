@@ -9,15 +9,15 @@ const useStyles = makeStyles((theme) => createStyles({
 	}
 }));
 
-const Characters = (props: RouteComponentProps) => {
+const Books = (props: RouteComponentProps) => {
 	const classes = useStyles();
 	const { history } = props;
 
 	return (
 		<Grid container direction="column" className={classes.root}>
-			<Categories category={"characters"} history={history} />
+			<Categories category={"books"} history={history} />
 		</Grid>
 	);
 };
 
-export default Characters;
+export default Books;

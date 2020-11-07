@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import HomeIcon from '@material-ui/icons/Home';
+import { RouteComponentProps } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => createStyles({
 	root: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => createStyles({
 	}
 }));
 
-const NotFound = () => {
+const NotFound = (props: RouteComponentProps) => {
 	const classes = useStyles();
 
 	return (
@@ -30,6 +31,7 @@ const NotFound = () => {
 					variant="contained"
 					className={classes.button}
 					startIcon={<KeyboardArrowLeftIcon />}
+					onClick={() => props.history.goBack()}
 				>
 					<span className={classes.buttonText}>Back</span>
 				</Button>
@@ -37,6 +39,7 @@ const NotFound = () => {
 					variant="contained"
 					className={classes.button}
 					endIcon={<HomeIcon />}
+					onClick={() => props.history.push("/")}
 				>
 					<span className={classes.buttonText}>Home</span>
 				</Button>

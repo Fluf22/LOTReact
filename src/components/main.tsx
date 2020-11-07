@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
+import { RouteComponentProps } from 'react-router-dom';
 import Categories from './categories';
 
 const useStyles = makeStyles((theme) => createStyles({
@@ -18,12 +19,13 @@ const useStyles = makeStyles((theme) => createStyles({
 	}
 }));
 
-const Main = () => {
+const Main = (props: RouteComponentProps) => {
 	const classes = useStyles();
+	const { history } = props;
 
 	return (
 		<Grid container direction="column" className={classes.root}>
-			<Categories onChange={(category) => console.log(`Load category ${category}`)} />
+			<Categories category={""} history={history} />
 			<Grid item container direction="column" className={classes.description} justify="space-around">
 				<Grid item container direction="column" justify="space-evenly" className={classes.paragraph}>
 					<Grid item>
@@ -72,7 +74,7 @@ const Main = () => {
 							My name is Thomas Raffray, and I'm a full-stack developer.
 						</Typography>
 						<Typography>
-							Here is <a href="https://www.linkedin.com/in/thomas-raffray-66a570123/" target="_blank" rel="noreferrer">my LinkedIn page</a>, and <a href="https://github.com/Fluf22" target="_blank" rel="noreferrer">my Github profile</a>.
+							Here is <a href="https://www.linkedin.com/in/thomas-raffray-66a570123/" target="_blank" rel="noreferrer">my LinkedIn page</a>, and <a href="https://github.com/Fluf22/LOTReact" target="_blank" rel="noreferrer">the Github repository</a>, if you want to look at the code.
 						</Typography>
 						<Typography>
 							<a href="/assets/cv-thomas-raffray-2020.pdf" target="_blank" rel="noreferrer">Click here to download my resume!</a> (FR)
