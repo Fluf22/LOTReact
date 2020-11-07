@@ -4,7 +4,7 @@
 
 ## Demo
 
-The Lord of the Rings in React
+The Lord of the Rings in React\
 [Access demo on Netlify](https://lotreact.netlify.app/)
 
 ## Stack used
