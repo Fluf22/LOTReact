@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { History } from 'history';
 import { Button, ButtonGroup, createStyles, Grid, makeStyles } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(() => createStyles({
 	categorySelector: {
@@ -9,13 +9,13 @@ const useStyles = makeStyles(() => createStyles({
 }));
 
 interface CategoryProps {
-	category: string;
-	history: History;
+	category?: string;
 };
 
-const Categories = ({ category, history }: CategoryProps) => {
+const Categories = ({ category }: CategoryProps) => {
 	const classes = useStyles();
-	const [selectedCategory, setCategory] = useState<string>(category?.length > 0 ? category.charAt(0).toUpperCase() + category.slice(1) : "");
+	const history = useHistory();
+	const [selectedCategory, setCategory] = useState<string>(category ? category.charAt(0).toUpperCase() + category.slice(1) : "");
 
 	useEffect(() => {
 		history.push(`/${selectedCategory.toLowerCase()}`);

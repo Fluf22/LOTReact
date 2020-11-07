@@ -1,6 +1,5 @@
 import React from 'react';
 import { createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
-import { RouteComponentProps } from 'react-router-dom';
 import Categories from './categories';
 
 const useStyles = makeStyles((theme) => createStyles({
@@ -22,14 +21,13 @@ const useStyles = makeStyles((theme) => createStyles({
 	}
 }));
 
-const Main = (props: RouteComponentProps) => {
+const Main = () => {
 	const classes = useStyles();
-	const { history } = props;
 
 	return (
 		<Grid container direction="column" className={classes.root}>
 			<Grid item className={classes.categorySelector}>
-				<Categories category={""} history={history} />
+				<Categories />
 			</Grid>
 			<Grid item container direction="column" className={classes.description} justify="space-around">
 				<Grid item container direction="column" justify="space-evenly" className={classes.paragraph}>
