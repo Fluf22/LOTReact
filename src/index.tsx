@@ -33,7 +33,11 @@ ReactDOM.render(
 					<Route path="/:slug?" component={Home} />
 				</Router>
 			</ThemeProvider>
-			<ReactQueryDevtools initialIsOpen />
+			{
+				process.env.NODE_ENV === "development" ? (
+					<ReactQueryDevtools initialIsOpen />
+				) : ("")
+			}
 		</ReactQueryCacheProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
