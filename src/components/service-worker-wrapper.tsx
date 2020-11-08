@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Snackbar, Button } from '@material-ui/core';
+import { Snackbar, Button, makeStyles, createStyles } from '@material-ui/core';
 import * as serviceWorkerRegistration from '../serviceWorkerRegistration';
 
+const useStyles = makeStyles(() => createStyles({
+	root: {
+		zIndex: 20
+	}
+}));
+
 const ServiceWorkerWrapper = () => {
+	const classes = useStyles();
 	const [showReload, setShowReload] = useState(false);
 	const [waitingWorker, setWaitingWorker] = useState<ServiceWorker | null>(null);
 
@@ -23,19 +30,21 @@ const ServiceWorkerWrapper = () => {
 
 	return (
 		<Snackbar
+			id="update-snackbar"
 			open={showReload}
-			message="Nouvelle version disponible !"
+			message="New version available!"
 			onClick={reloadPage}
 			anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
 			action={
 				<Button
-					color="inherit"
+					color="primary"
 					size="small"
 					onClick={reloadPage}
 				>
-					Mettre à jour
+					Update
 				</Button>
 			}
+			className={classes.root}
 		/>
 	);
 }

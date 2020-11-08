@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Fuse from 'fuse.js';
 
 export const usePagination = (fullData: any[], pageSize: number = 10): { isPaginationReady: boolean, paginatedData: any[], pageCount: number, pageIndex: number, onPaginationChange: (page: number) => void } => {
@@ -71,4 +71,14 @@ export const useFuzzySearch = (data: any[]): { filteredData: any[], onSearchTerm
 			onSearchTermChange: (search: string) => setSearchTerm(search)
 		};
 	}
+};
+
+export const useEventListener = (eventName: string, handler: EventListenerOrEventListenerObject, passive = false) => {
+	useEffect(() => {
+		window.addEventListener(eventName, handler, passive);
+
+		return () => {
+			window.removeEventListener(eventName, handler);
+		};
+	});
 };

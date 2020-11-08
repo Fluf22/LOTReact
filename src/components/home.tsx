@@ -1,10 +1,11 @@
 import React, { Suspense } from 'react';
 import { Switch, Route, RouteComponentProps } from 'react-router-dom';
-import Header from './header';
 import { CircularProgress, createStyles, Grid, makeStyles } from '@material-ui/core';
+import Header from './header';
 import Main from './main';
 import ErrorBoundary from './error-boundary';
 import Categories from './categories';
+import ServiceWorkerWrapper from './service-worker-wrapper';
 
 const Characters = React.lazy(() => import('./characters'));
 const Books = React.lazy(() => import('./books'));
@@ -61,6 +62,7 @@ const Home = (props: RouteComponentProps<HomeRouteProps>) => {
 					</ErrorBoundary>
 				</Grid>
 			</Grid>
+			<ServiceWorkerWrapper />
 		</Grid>
 	);
 };
