@@ -23,7 +23,7 @@ export const usePagination = (fullData: any[], pageSize: number = 10): { isPagin
 			paginatedData,
 			pageCount: 0,
 			pageIndex: 1,
-			onPaginationChange: () => { }
+			onPaginationChange: setPageIndex
 		};
 	} else {
 		return {

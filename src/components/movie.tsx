@@ -68,6 +68,10 @@ const Movie = ({ movie }: MovieProps) => {
 		}
 	}, [isError, error]);
 
+	useEffect(() => {
+		onPaginationChange(1);
+	}, [movie, onPaginationChange]);
+
 	return (
 		<Card className={classes.movieCard}>
 			<CardContent className={classes.cardRoot}>

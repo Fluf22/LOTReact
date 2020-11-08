@@ -65,6 +65,10 @@ const Book = ({ book }: BookProps) => {
 		}
 	}, [isError, error]);
 
+	useEffect(() => {
+		onPaginationChange(1);
+	}, [book, onPaginationChange]);
+
 	return (
 		<Card className={classes.bookCard}>
 			<CardContent className={classes.cardRoot}>
