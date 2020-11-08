@@ -28,7 +28,7 @@ const Categories = ({ category }: CategoryProps) => {
 		<Grid container direction="row" justify="center" alignItems="center" className={classes.categorySelector}>
 			<ButtonGroup color="secondary" aria-label="lotr category selector">
 				{
-					["", "Characters", "Books", "Movies", "Quotes"].map((catName, idx) => (
+					["", "Characters", "Books", "Movies"].map((catName, idx) => (
 						<Button key={idx} variant={selectedCategory === catName ? "contained" : "outlined"} onClick={() => setCategory(catName)}>
 							{
 								catName !== "" ? catName : "Home"

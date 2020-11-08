@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 
 const useQuotes = (movieID: string, axiosCfg: AxiosRequestConfig) => {
 	return useQuery(["quotes", movieID], () => axios.request({
-		url: movieID !== "" ? `/movie/${movieID}/quote` : "/quote",
+		url: `/movie/${movieID}/quote`,
 		...axiosCfg
 	}).then((res) => res.data));
 };

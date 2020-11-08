@@ -9,7 +9,6 @@ import Categories from './categories';
 const Characters = React.lazy(() => import('./characters'));
 const Books = React.lazy(() => import('./books'));
 const Movies = React.lazy(() => import('./movies'));
-const Quotes = React.lazy(() => import('./quotes'));
 const NotFound = React.lazy(() => import('./not-found'));
 
 const useStyles = makeStyles(() => createStyles({
@@ -52,7 +51,6 @@ const Home = (props: RouteComponentProps<HomeRouteProps>) => {
 							</Grid>
 						}>
 							<Switch>
-								<Route exact path="/quotes" component={Quotes} />
 								<Route exact path="/movies" component={Movies} />
 								<Route exact path="/books" component={Books} />
 								<Route exact path="/characters" component={Characters} />
