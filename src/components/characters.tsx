@@ -66,14 +66,6 @@ const Characters = () => {
 		}
 	}, [isError, error]);
 
-	useEffect(()=>{
-		console.log("filteredData: ", filteredData)
-	}, [filteredData]);
-
-	useEffect(()=>{
-		console.log("Char: ", characters)
-	}, [characters]);
-
 	return (
 		<Grid container direction="column" className={classes.root}>
 			<Grid item className={classes.categorySelector}>
