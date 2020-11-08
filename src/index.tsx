@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { QueryCache, ReactQueryCacheProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query-devtools';
 import { CssBaseline, ThemeProvider, Theme, createMuiTheme } from '@material-ui/core';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -29,9 +30,10 @@ ReactDOM.render(
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
 				<Router>
-					<Route path="/" component={Home} />
+					<Route path="/:slug?" component={Home} />
 				</Router>
 			</ThemeProvider>
+			<ReactQueryDevtools initialIsOpen />
 		</ReactQueryCacheProvider>
 	</React.StrictMode>,
 	document.getElementById('root')

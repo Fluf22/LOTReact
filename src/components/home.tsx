@@ -1,9 +1,10 @@
 import React, { Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, RouteComponentProps } from 'react-router-dom';
 import Header from './header';
 import { CircularProgress, createStyles, Grid, makeStyles } from '@material-ui/core';
 import Main from './main';
 import ErrorBoundary from './error-boundary';
+import Categories from './categories';
 
 const Characters = React.lazy(() => import('./characters'));
 const Books = React.lazy(() => import('./books'));
@@ -15,33 +16,53 @@ const useStyles = makeStyles(() => createStyles({
 	root: {
 		height: "100%"
 	},
+	body: {
+		height: "calc(100% - 64px)"
+	},
+	categorySelector: {
+		height: "10%"
+	},
+	slug: {
+		height: "90%"
+	},
 	fallback: {
 		height: "calc(100% - 64px)"
 	}
 }));
 
-const Home = () => {
+interface HomeRouteProps {
+	slug?: string;
+};
+
+const Home = (props: RouteComponentProps<HomeRouteProps>) => {
 	const classes = useStyles();
 
 	return (
 		<Grid container direction="column" className={classes.root}>
 			<Header />
-			<ErrorBoundary>
-				<Suspense fallback={
-					<Grid container justify="center" alignItems="center" className={classes.fallback}>
-						<CircularProgress color="secondary" />
-					</Grid>
-				}>
-					<Switch>
-						<Route exact path="/quotes" component={Quotes} />
-						<Route exact path="/movies" component={Movies} />
-						<Route exact path="/books" component={Books} />
-						<Route exact path="/characters" component={Characters} />
-						<Route exact path="/" component={Main} />
-						<Route path="*" component={NotFound} />
-					</Switch>
-				</Suspense>
-			</ErrorBoundary>
+			<Grid item container direction="column" className={classes.body}>
+				<Grid item className={classes.categorySelector}>
+					<Categories category={props.match.params.slug} />
+				</Grid>
+				<Grid item container direction="row" className={classes.slug}>
+					<ErrorBoundary>
+						<Suspense fallback={
+							<Grid container justify="center" alignItems="center" className={classes.fallback}>
+								<CircularProgress color="secondary" />
+							</Grid>
+						}>
+							<Switch>
+								<Route exact path="/quotes" component={Quotes} />
+								<Route exact path="/movies" component={Movies} />
+								<Route exact path="/books" component={Books} />
+								<Route exact path="/characters" component={Characters} />
+								<Route exact path="/" component={Main} />
+								<Route path="*" component={NotFound} />
+							</Switch>
+						</Suspense>
+					</ErrorBoundary>
+				</Grid>
+			</Grid>
 		</Grid>
 	);
 };

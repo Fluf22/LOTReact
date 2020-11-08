@@ -18,7 +18,10 @@ const Categories = ({ category }: CategoryProps) => {
 	const [selectedCategory, setCategory] = useState<string>(category ? category.charAt(0).toUpperCase() + category.slice(1) : "");
 
 	useEffect(() => {
-		history.push(`/${selectedCategory.toLowerCase()}`);
+		const newSelectedCategory = selectedCategory.toLowerCase();
+		if (newSelectedCategory === "" || !history.location.pathname.includes(newSelectedCategory)) {
+			history.push(`/${newSelectedCategory}`);
+		}
 	}, [selectedCategory, history]);
 
 	return (

@@ -2,21 +2,27 @@ import React, { useEffect } from 'react';
 import { CircularProgress, createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import { useMovies } from '../queries';
-import Categories from './categories';
+import { usePagination } from '../hooks';
+import { Pagination } from '@material-ui/lab';
+import Movie from './movie';
 
-const useStyles = makeStyles((theme) => createStyles({
+const useStyles = makeStyles(() => createStyles({
 	root: {
-		height: "calc(100% - 64px)"
+		height: "100%"
 	},
 	categorySelector: {
 		height: "10%"
 	},
 	movieCards: {
-		height: "90%"
+		height: "85%"
 	},
 	loader: {
 		height: "100%",
 		width: "100%"
+	},
+	pagination: {
+		height: "5%",
+		backgroundColor: "#ffffff"
 	},
 	errorIcon: {
 		fontSize: "80px",
@@ -29,6 +35,13 @@ const useStyles = makeStyles((theme) => createStyles({
 const Movies = () => {
 	const classes = useStyles();
 	const { isLoading, isError, error, data } = useMovies();
+	const {
+		isPaginationReady,
+		paginatedData: movies,
+		pageCount,
+		pageIndex,
+		onPaginationChange
+	} = usePagination(data?.docs ?? [], 1);
 
 	useEffect(() => {
 		if (isError) {
@@ -37,11 +50,8 @@ const Movies = () => {
 	}, [isError, error]);
 
 	return (
-		<Grid container direction="column" className={classes.root}>
-			<Grid item className={classes.categorySelector}>
-				<Categories category="movies" />
-			</Grid>
-			<Grid item container direction="column" className={classes.movieCards} justify="space-around">
+		<Grid container direction="column" className={classes.root} justify="space-between">
+			<Grid item container direction="column" className={classes.movieCards} justify="space-around" alignItems="center">
 			{
 					isLoading ? (
 						<Grid item container justify="center" alignItems="center" className={classes.loader}>
@@ -55,13 +65,20 @@ const Movies = () => {
 									<Typography className={classes.errorIcon}>Please reload the page</Typography>
 								</Grid>
 							) : (
-								data.docs.map((movie: any, idx: number) => (
-									<div key={idx}>{JSON.stringify(movie, null, 4)}</div>
+								movies.map((movie: any, idx: number) => (
+									<Movie key={idx} movie={movie} />
 								))
 							)
 						)
 				}
 			</Grid>
+			{
+				isPaginationReady ? (
+					<Grid item container justify="center" alignItems="center" className={classes.pagination}>
+						<Pagination variant="text" color="primary" boundaryCount={2} count={pageCount} page={pageIndex} onChange={(_, page) => onPaginationChange(page)} />
+					</Grid>
+				) : ("")
+			}
 		</Grid>
 	);
 };

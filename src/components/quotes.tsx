@@ -2,13 +2,12 @@ import React, { useEffect } from 'react';
 import { CircularProgress, createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import { useQuotes } from '../queries';
-import Categories from './categories';
 import { usePagination } from '../hooks';
 import { Pagination } from '@material-ui/lab';
 
-const useStyles = makeStyles((theme) => createStyles({
+const useStyles = makeStyles(() => createStyles({
 	root: {
-		height: "calc(100% - 64px)"
+		height: "100%"
 	},
 	categorySelector: {
 		height: "10%"
@@ -50,10 +49,7 @@ const Quotes = () => {
 	}, [isError, error]);
 
 	return (
-		<Grid container direction="column" className={classes.root}>
-			<Grid item className={classes.categorySelector}>
-				<Categories category="quotes" />
-			</Grid>
+		<Grid container direction="column" className={classes.root} justify="space-between">
 			<Grid item container direction="column" className={classes.quotesCards} justify="space-around">
 			{
 					isLoading ? (

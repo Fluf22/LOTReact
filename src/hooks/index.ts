@@ -1,13 +1,12 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useMemo } from "react";
 import Fuse from 'fuse.js';
 
 export const usePagination = (fullData: any[], pageSize: number = 10): { isPaginationReady: boolean, paginatedData: any[], pageCount: number, pageIndex: number, onPaginationChange: (page: number) => void } => {
 	const [pageIndex, setPageIndex] = useState<number>(1);
-	const [paginatedData, setPaginatedData] = useState<any[]>(fullData.slice(0, pageSize) ?? []);
 
-	useEffect(() => {
+	const paginatedData = useMemo(() => {
 		const startIndex = pageIndex * pageSize - pageSize;
-		setPaginatedData(fullData.slice(startIndex, startIndex + pageSize));
+		return fullData.slice(startIndex, startIndex + pageSize);
 	}, [fullData, pageIndex, pageSize]);
 
 	const pageCount = useMemo(() => {
@@ -58,8 +57,6 @@ export const useFuzzySearch = (data: any[]): { filteredData: any[], onSearchTerm
 	}, [data]);
 
 	const filteredData = useMemo(() => {
-		console.log(fuse.search(searchTerm))
-		console.log(searchTerm)
 		return fuse.search(searchTerm).map(el => el.item);
 	}, [searchTerm, fuse]);
 

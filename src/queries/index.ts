@@ -17,4 +17,4 @@ export const useCharacters = () => charactersQuery(axiosCfg);
 export const useBooks = () => booksQuery(axiosCfg);
 export const useChapters = (bookID: string) => chaptersQuery(bookID, axiosCfg);
 export const useMovies = () => moviesQuery(axiosCfg);
-export const useQuotes = () => quotesQuery(axiosCfg);
+export const useQuotes = (movieID: string = "") => quotesQuery(movieID, axiosCfg);
