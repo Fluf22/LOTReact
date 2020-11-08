@@ -56,7 +56,7 @@ const Main = () => {
 					</Grid>
 					<Grid item className={classes.paragraphText}>
 						<Typography>
-							This website has been done with React, React Router, React queries and a service worker to be cacheable as well as accessible offline.
+							This website has been done with React, React Router, React queries, fuse.js for the fuzzy search and a service worker to be cacheable as well as accessible offline.
 						</Typography>
 						<Typography>
 							Everything is hosted on Netlify.

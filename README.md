@@ -18,6 +18,7 @@ This PWA have been deployed to Netlify.
 - React Queries
 - Material UI
 - Axios
+- Fuse.js
 
 ### Back-end
 
