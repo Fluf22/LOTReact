@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { QueryCache, ReactQueryCacheProvider } from 'react-query';
 import { CssBaseline, ThemeProvider, Theme, createMuiTheme } from '@material-ui/core';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -20,14 +21,18 @@ const theme: Theme = createMuiTheme({
 	}
 });
 
+const queryCache = new QueryCache();
+
 ReactDOM.render(
 	<React.StrictMode>
-		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<Router>
-				<Route path="/" component={Home} />
-			</Router>
-		</ThemeProvider>
+		<ReactQueryCacheProvider queryCache={queryCache}>
+			<ThemeProvider theme={theme}>
+				<CssBaseline />
+				<Router>
+					<Route path="/" component={Home} />
+				</Router>
+			</ThemeProvider>
+		</ReactQueryCacheProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 );
