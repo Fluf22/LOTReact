@@ -33,10 +33,10 @@ const Main = () => {
 						This Progressive Web App (PWA) allows you to access many data about the well-known universe of The Lord of The Rings.
 						</Typography>
 					<Typography>
-						Select a category to begin looking for LOTR characters, books or movies.The movie category give you the ability to search quotes.
+						Select a category to begin looking for LOTR characters, books or movies.
 						</Typography>
 					<Typography>
-						The movie category also give you the ability to search quotes, and the book category, specific chapters.
+						The movie category also gives you the ability to search quotes, and the book category, specific chapters.
 						</Typography>
 				</Grid>
 			</Grid>
