@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import { Accordion, AccordionDetails, AccordionSummary, Card, CardContent, CircularProgress, createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
+import { CircularProgress, createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
-import { useBooks, useChapters } from '../queries';
+import { useQuotes } from '../queries';
 import Categories from './categories';
 import { usePagination } from '../hooks';
 import { Pagination } from '@material-ui/lab';
-import Book from './book';
 
 const useStyles = makeStyles((theme) => createStyles({
 	root: {
@@ -14,18 +13,8 @@ const useStyles = makeStyles((theme) => createStyles({
 	categorySelector: {
 		height: "10%"
 	},
-	bookCards: {
+	quotesCards: {
 		height: "85%"
-	},
-	bookCard: {
-		width: "60%",
-		height: "90%"
-	},
-	bookTitle: {
-		margin: "20px"
-	},
-	accordionHeading: {
-		fontSize: "22px"
 	},
 	pagination: {
 		height: "5%",
@@ -43,30 +32,30 @@ const useStyles = makeStyles((theme) => createStyles({
 	}
 }));
 
-const Books = () => {
+const Quotes = () => {
 	const classes = useStyles();
-	const { isLoading, isError, error, data } = useBooks();
+	const { isLoading, isError, error, data } = useQuotes();
 	const {
 		isPaginationReady,
-		paginatedData: books,
+		paginatedData: quotes,
 		pageCount,
 		pageIndex,
 		onPaginationChange
-	} = usePagination(data?.docs ?? [], 1);
+	} = usePagination(data?.docs ?? [], 25);
 
 	useEffect(() => {
 		if (isError) {
-			console.error("Error during books query: ", error);
+			console.error("Error during quotes query: ", error);
 		}
 	}, [isError, error]);
 
 	return (
 		<Grid container direction="column" className={classes.root}>
 			<Grid item className={classes.categorySelector}>
-				<Categories category="books" />
+				<Categories category="quotes" />
 			</Grid>
-			<Grid item container direction="column" className={classes.bookCards} justify="space-around" alignItems="center">
-				{
+			<Grid item container direction="column" className={classes.quotesCards} justify="space-around">
+			{
 					isLoading ? (
 						<Grid item container justify="center" alignItems="center" className={classes.loader}>
 							<CircularProgress color="secondary" />
@@ -79,10 +68,10 @@ const Books = () => {
 									<Typography className={classes.errorIcon}>Please reload the page</Typography>
 								</Grid>
 							) : (
-									books.map((book: any, idx: number) => (
-										<Book key={idx} book={book} />
-									))
-								)
+								quotes.map((quote: any, idx: number) => (
+									<div key={idx}>{JSON.stringify(quote, null, 4)}</div>
+								))
+							)
 						)
 				}
 			</Grid>
@@ -97,4 +86,4 @@ const Books = () => {
 	);
 };
 
-export default Books;
+export default Quotes;

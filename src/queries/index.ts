@@ -1,7 +1,9 @@
 import { AxiosRequestConfig } from "axios";
 import charactersQuery from './characters';
 import booksQuery from './books';
+import chaptersQuery from './chapters';
 import moviesQuery from './movies';
+import quotesQuery from './quotes';
 
 export const axiosCfg: AxiosRequestConfig = {
 	method: "GET",
@@ -13,4 +15,6 @@ export const axiosCfg: AxiosRequestConfig = {
 
 export const useCharacters = () => charactersQuery(axiosCfg);
 export const useBooks = () => booksQuery(axiosCfg);
+export const useChapters = (bookID: string) => chaptersQuery(bookID, axiosCfg);
 export const useMovies = () => moviesQuery(axiosCfg);
+export const useQuotes = () => quotesQuery(axiosCfg);
