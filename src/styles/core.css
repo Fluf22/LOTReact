@@ -13,3 +13,7 @@ a {
 a:visited {
 	color: #b79c71;
 }
+
+#character-fuzzy-search {
+	color: white;
+}

@@ -1,24 +1,35 @@
 import React, { useEffect } from 'react';
-import { Button, Card, CardActions, CardContent, CircularProgress, createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CircularProgress, createStyles, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import { useCharacters } from '../queries';
 import Categories from './categories';
 import { Pagination } from '@material-ui/lab';
-import { usePagination } from '../hooks';
+import { useFuzzySearch, usePagination } from '../hooks';
 
-const useStyles = makeStyles((theme) => createStyles({
+const useStyles = makeStyles(() => createStyles({
 	root: {
 		height: "calc(100% - 64px)"
 	},
 	categorySelector: {
 		height: "10%"
 	},
+	main: {
+		height: "85%"
+	},
+	searchBar: {
+		height: "10%",
+		paddingLeft: "70px"
+	},
+	searchBarInput: {
+		backgroundColor: "#896f4c",
+		borderRadius: "5px"
+	},
 	characterCards: {
-		height: "85%",
+		height: "90%",
 		padding: "70px"
 	},
 	characterCard: {
-		width: "300px",
+		width: "310px",
 		height: "170px"
 	},
 	pagination: {
@@ -40,13 +51,14 @@ const useStyles = makeStyles((theme) => createStyles({
 const Characters = () => {
 	const classes = useStyles();
 	const { isLoading, isError, error, data } = useCharacters();
+	const { filteredData, onSearchTermChange } = useFuzzySearch(data?.docs ?? []);
 	const {
 		isPaginationReady,
 		paginatedData: characters,
 		pageCount,
 		pageIndex,
 		onPaginationChange
-	} = usePagination(data?.docs ?? []);
+	} = usePagination(filteredData);
 
 	useEffect(() => {
 		if (isError) {
@@ -54,12 +66,20 @@ const Characters = () => {
 		}
 	}, [isError, error]);
 
+	useEffect(()=>{
+		console.log("filteredData: ", filteredData)
+	}, [filteredData]);
+
+	useEffect(()=>{
+		console.log("Char: ", characters)
+	}, [characters]);
+
 	return (
 		<Grid container direction="column" className={classes.root}>
 			<Grid item className={classes.categorySelector}>
 				<Categories category="characters" />
 			</Grid>
-			<Grid item container direction="row" justify="space-between" className={classes.characterCards}>
+			<Grid item container direction="row" justify="space-between" className={classes.main}>
 				{
 					isLoading ? (
 						<Grid item container justify="center" alignItems="center" className={classes.loader}>
@@ -73,30 +93,40 @@ const Characters = () => {
 									<Typography className={classes.errorIcon}>Please reload the page</Typography>
 								</Grid>
 							) : (
-									characters.map((character: any, idx: number) => (
-										<Card key={idx} className={classes.characterCard}>
-											<CardContent>
-												<Typography color="textSecondary" gutterBottom>
-													{character.race}
-												</Typography>
-												<Typography variant="h5" component="h2">
-													{character.name}
-												</Typography>
-												<Typography color="textSecondary">
-													{character.gender}
-												</Typography>
-												<Typography variant="body2" component="p">
-												</Typography>
-											</CardContent>
+									<>
+										<Grid item container alignItems="center" className={classes.searchBar}>
+											<TextField id="character-fuzzy-search" type="search" label="Search character" variant="filled" color="secondary" className={classes.searchBarInput} onChange={({ target: { value: searchTerm }}) => onSearchTermChange(searchTerm)} />
+										</Grid>
+										<Grid item container direction="row" justify="space-between" className={classes.characterCards}>
 											{
-												character.wikiUrl !== "" ? (
-													<CardActions>
-														<Button onClick={() => window.open(character.wikiUrl, '_blank')} size="small">Learn More</Button>
-													</CardActions>
-												) : ("")
+												characters.map((character: any, idx: number) => (
+													<Card key={idx} className={classes.characterCard}>
+														<CardContent>
+															<Typography color="textSecondary" gutterBottom>
+																{character.race}
+															</Typography>
+															<Typography variant="h5" component="h2">
+																{character.name}
+															</Typography>
+															<Typography color="textSecondary">
+																{character.gender}
+															</Typography>
+															<Typography variant="body2" component="p">
+															</Typography>
+														</CardContent>
+														{
+															character.wikiUrl !== "" ? (
+																<CardActions>
+																	<Button onClick={() => window.open(character.wikiUrl, '_blank')} size="small">Learn More</Button>
+																</CardActions>
+															) : ("")
+														}
+													</Card>
+												))
 											}
-										</Card>
-									))
+										</Grid>
+
+									</>
 								)
 						)
 				}
