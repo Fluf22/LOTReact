@@ -1,45 +1,10 @@
 import React, { useEffect } from 'react';
-import { Card, CardContent, Typography, createStyles, makeStyles, Grid, CircularProgress, Paper } from '@material-ui/core';
+import { Card, CardContent, Typography, Grid, CircularProgress, Paper } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import { useQuotes } from '../queries';
 import { usePagination } from '../hooks';
 import { Pagination } from '@material-ui/lab';
-
-const useStyles = makeStyles(() => createStyles({
-	movieCard: {
-		width: "60%",
-		height: "90%"
-	},
-	cardRoot: {
-		height: "100%",
-		padding: "0"
-	},
-	movieTitle: {
-		height: "25%",
-		padding: "20px"
-	},
-	quoteCards: {
-		height: "65%"
-	},
-	quoteCard: {
-		width: "90%",
-		padding: "20px"
-	},
-	pagination: {
-		height: "10%",
-		backgroundColor: "#ffffff"
-	},
-	loader: {
-		height: "100%",
-		width: "100%"
-	},
-	errorIcon: {
-		fontSize: "80px",
-	},
-	errorText: {
-		fontSize: "40px",
-	}
-}));
+import useStyles from '../styles/movie';
 
 interface MovieProps {
 	movie: {

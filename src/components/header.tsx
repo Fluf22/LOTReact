@@ -1,33 +1,8 @@
 import React, { useState } from 'react';
-import { AppBar, Button, createStyles, Grid, makeStyles, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Button, Grid, Toolbar, Typography } from '@material-ui/core';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import { useEventListener } from '../hooks';
-
-const useStyles = makeStyles((theme) => createStyles({
-	root: {
-		zIndex: 10
-	},
-	toolBar: {
-		display: "flex",
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center"
-	},
-	title: {
-		marginLeft: theme.spacing(3)
-	},
-	installButton: {
-		marginRight: "13px",
-		padding: "0px 15px"
-	},
-	installButtonIcon: {
-		marginLeft: "7px",
-		marginBottom: "3px"
-	},
-	moto: {
-		fontStyle: "italic"
-	}
-}));
+import useStyles from '../styles/header';
 
 const Header = () => {
 	const classes = useStyles();

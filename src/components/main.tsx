@@ -1,21 +1,6 @@
 import React from 'react';
-import { createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => createStyles({
-	root: {
-		height: "calc(100% - 64px)"
-	},
-	description: {
-		padding: theme.spacing(3),
-		height: "90%"
-	},
-	paragraph: {
-		height: "30%"
-	},
-	paragraphText: {
-		paddingLeft: theme.spacing(3)
-	}
-}));
+import { Grid, Typography } from '@material-ui/core';
+import useStyles from '../styles/main';
 
 const Main = () => {
 	const classes = useStyles();

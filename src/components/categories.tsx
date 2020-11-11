@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, ButtonGroup, createStyles, Grid, makeStyles } from '@material-ui/core';
+import { Button, ButtonGroup, Grid } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-
-const useStyles = makeStyles(() => createStyles({
-	categorySelector: {
-		height: "100%"
-	}
-}));
+import useStyles from '../styles/categories';
 
 interface CategoryProps {
 	category?: string;

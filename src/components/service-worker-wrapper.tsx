@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Snackbar, Button, makeStyles, createStyles } from '@material-ui/core';
+import { Snackbar, Button } from '@material-ui/core';
 import * as serviceWorkerRegistration from '../serviceWorkerRegistration';
-
-const useStyles = makeStyles(() => createStyles({
-	root: {
-		zIndex: 20
-	}
-}));
+import useStyles from '../styles/service-worker-wrapper';
 
 const ServiceWorkerWrapper = () => {
 	const classes = useStyles();

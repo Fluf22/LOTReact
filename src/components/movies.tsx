@@ -1,36 +1,11 @@
 import React, { useEffect } from 'react';
-import { CircularProgress, createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
+import { CircularProgress, Grid, Typography } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import { useMovies } from '../queries';
 import { usePagination } from '../hooks';
 import { Pagination } from '@material-ui/lab';
 import Movie from './movie';
-
-const useStyles = makeStyles(() => createStyles({
-	root: {
-		height: "100%"
-	},
-	categorySelector: {
-		height: "10%"
-	},
-	movieCards: {
-		height: "85%"
-	},
-	loader: {
-		height: "100%",
-		width: "100%"
-	},
-	pagination: {
-		height: "5%",
-		backgroundColor: "#ffffff"
-	},
-	errorIcon: {
-		fontSize: "80px",
-	},
-	errorText: {
-		fontSize: "40px",
-	}
-}));
+import useStyles from '../styles/movies';
 
 const Movies = () => {
 	const classes = useStyles();
