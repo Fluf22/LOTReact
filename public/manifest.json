@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "LOTReact",
+  "name": "LOTReact: the React to rule all the data",
   "icons": [
     {
       "src": "favicon.ico",
