@@ -1,46 +1,11 @@
 import React, { useEffect } from 'react';
-import { CircularProgress, createStyles, Grid, makeStyles, Typography } from '@material-ui/core';
+import { CircularProgress, Grid, Typography } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import { useBooks } from '../queries';
 import { usePagination } from '../hooks';
 import { Pagination } from '@material-ui/lab';
 import Book from './book';
-
-const useStyles = makeStyles(() => createStyles({
-	root: {
-		height: "100%"
-	},
-	categorySelector: {
-		height: "10%"
-	},
-	bookCards: {
-		height: "85%"
-	},
-	bookCard: {
-		width: "60%",
-		height: "90%"
-	},
-	bookTitle: {
-		margin: "20px"
-	},
-	accordionHeading: {
-		fontSize: "22px"
-	},
-	pagination: {
-		height: "5%",
-		backgroundColor: "#ffffff"
-	},
-	loader: {
-		height: "100%",
-		width: "100%"
-	},
-	errorIcon: {
-		fontSize: "80px",
-	},
-	errorText: {
-		fontSize: "40px",
-	}
-}));
+import useStyles from '../styles/books';
 
 const Books = () => {
 	const classes = useStyles();

@@ -1,45 +1,10 @@
 import React, { useEffect } from 'react';
-import { Card, CardContent, Typography, createStyles, makeStyles, Grid, CircularProgress, Paper } from '@material-ui/core';
+import { Card, CardContent, Typography, Grid, CircularProgress, Paper } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import { useChapters } from '../queries';
 import { usePagination } from '../hooks';
 import { Pagination } from '@material-ui/lab';
-
-const useStyles = makeStyles(() => createStyles({
-	bookCard: {
-		width: "60%",
-		height: "90%"
-	},
-	cardRoot: {
-		height: "100%",
-		padding: "0"
-	},
-	bookTitle: {
-		height: "15%",
-		padding: "20px"
-	},
-	chapterCards: {
-		height: "75%"
-	},
-	chapterCard: {
-		width: "90%",
-		padding: "20px"
-	},
-	pagination: {
-		height: "10%",
-		backgroundColor: "#ffffff"
-	},
-	loader: {
-		height: "100%",
-		width: "100%"
-	},
-	errorIcon: {
-		fontSize: "80px",
-	},
-	errorText: {
-		fontSize: "40px",
-	}
-}));
+import useStyles from '../styles/book';
 
 interface BookProps {
 	book: {
@@ -73,7 +38,7 @@ const Book = ({ book }: BookProps) => {
 		<Card className={classes.bookCard}>
 			<CardContent className={classes.cardRoot}>
 				<Grid item className={classes.bookTitle}>
-					<Typography variant="h3">
+					<Typography variant="h3" className={classes.bookTitleText} title={book.name}>
 						{book.name}
 					</Typography>
 				</Grid>

@@ -1,51 +1,10 @@
 import React, { useEffect } from 'react';
-import { Button, Card, CardActions, CardContent, CircularProgress, createStyles, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CircularProgress, Grid, TextField, Typography } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import { useCharacters } from '../queries';
 import { Pagination } from '@material-ui/lab';
 import { useFuzzySearch, usePagination } from '../hooks';
-
-const useStyles = makeStyles(() => createStyles({
-	root: {
-		height: "100%"
-	},
-	categorySelector: {
-		height: "10%"
-	},
-	main: {
-		height: "85%"
-	},
-	searchBar: {
-		height: "10%",
-		paddingLeft: "70px"
-	},
-	searchBarInput: {
-		backgroundColor: "#896f4c",
-		borderRadius: "5px"
-	},
-	characterCards: {
-		height: "90%",
-		padding: "70px"
-	},
-	characterCard: {
-		width: "310px",
-		height: "170px"
-	},
-	pagination: {
-		height: "5%",
-		backgroundColor: "#ffffff"
-	},
-	loader: {
-		height: "100%",
-		width: "100%"
-	},
-	errorIcon: {
-		fontSize: "80px",
-	},
-	errorText: {
-		fontSize: "40px",
-	}
-}));
+import useStyles from '../styles/characters';
 
 const Characters = () => {
 	const classes = useStyles();

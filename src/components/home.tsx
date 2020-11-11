@@ -1,34 +1,17 @@
 import React, { Suspense } from 'react';
 import { Switch, Route, RouteComponentProps } from 'react-router-dom';
-import { CircularProgress, createStyles, Grid, makeStyles } from '@material-ui/core';
+import { CircularProgress, Grid } from '@material-ui/core';
 import Header from './header';
 import Main from './main';
 import ErrorBoundary from './error-boundary';
 import Categories from './categories';
 import ServiceWorkerWrapper from './service-worker-wrapper';
+import useStyles from '../styles/home';
 
 const Characters = React.lazy(() => import('./characters'));
 const Books = React.lazy(() => import('./books'));
 const Movies = React.lazy(() => import('./movies'));
 const NotFound = React.lazy(() => import('./not-found'));
-
-const useStyles = makeStyles(() => createStyles({
-	root: {
-		height: "100%"
-	},
-	body: {
-		height: "calc(100% - 64px)"
-	},
-	categorySelector: {
-		height: "10%"
-	},
-	slug: {
-		height: "90%"
-	},
-	fallback: {
-		height: "calc(100% - 64px)"
-	}
-}));
 
 interface HomeRouteProps {
 	slug?: string;
