@@ -11,7 +11,11 @@ const useStyles = makeStyles(() => createStyles({
 		height: "95%",
 		maxWidth: "2000px",
 		alignSelf: "center",
-		overflowY: "auto"
+		overflowY: "auto",
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "space-evenly",
+		flexWrap: "nowrap"
 	},
 	searchBar: {
 		height: "10%",
@@ -22,8 +26,7 @@ const useStyles = makeStyles(() => createStyles({
 		borderRadius: "5px"
 	},
 	characterCards: {
-		height: "90%",
-		padding: "70px"
+		height: "90%"
 	},
 	characterCard: {
 		width: "310px",

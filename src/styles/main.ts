@@ -6,13 +6,13 @@ const useStyles = makeStyles((theme) => createStyles({
 	},
 	description: {
 		padding: theme.spacing(3),
-		height: "90%"
 	},
 	paragraph: {
-		height: "30%"
+		marginBottom: "50px"
 	},
 	paragraphText: {
-		paddingLeft: theme.spacing(3)
+		paddingLeft: theme.spacing(3),
+		marginTop: "30px"
 	}
 }));
 

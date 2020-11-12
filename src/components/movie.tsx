@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Card, CardContent, Typography, Grid, CircularProgress, Paper } from '@material-ui/core';
+import { Card, CardContent, Typography, Grid, CircularProgress, Paper, useMediaQuery } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import { useQuotes } from '../queries';
 import { usePagination } from '../hooks';
@@ -17,6 +17,7 @@ interface MovieProps {
 };
 
 const Movie = ({ movie }: MovieProps) => {
+	const isMobile = useMediaQuery('(max-width:555px)');
 	const classes = useStyles();
 	const { isLoading, isError, error, data } = useQuotes(movie?._id ?? "");
 	const {
@@ -74,12 +75,16 @@ const Movie = ({ movie }: MovieProps) => {
 												Quotes are only available for the original Lord of the Rings trilogy
 											</Grid>
 										) : (
-											quotes.map((quote: any, idx: number) => (
-												<Paper key={idx} color="primary" elevation={3} className={classes.quoteCard}>
-													<Typography>{`${(pageIndex - 1) * 4 + idx + 1}: ${quote.dialog}`}</Typography>
-												</Paper>
-											))
-										)
+												<div className={classes.quoteContainer}>
+													{
+														quotes.map((quote: any, idx: number) => (
+															<Paper key={idx} color="primary" elevation={3} className={classes.quoteCard}>
+																<Typography>{`${(pageIndex - 1) * 4 + idx + 1}: ${quote.dialog}`}</Typography>
+															</Paper>
+														))
+													}
+												</div>
+											)
 									)
 							)
 					}
@@ -87,7 +92,7 @@ const Movie = ({ movie }: MovieProps) => {
 				{
 					isPaginationReady ? (
 						<Grid item container justify="center" alignItems="center" className={classes.pagination}>
-							<Pagination variant="text" color="primary" boundaryCount={2} count={pageCount} page={pageIndex} onChange={(_, page) => onPaginationChange(page)} />
+							<Pagination variant="text" color="primary" boundaryCount={isMobile ? 1 : 2} siblingCount={isMobile ? 0 : 1} count={pageCount} page={pageIndex} onChange={(_, page) => onPaginationChange(page)} />
 						</Grid>
 					) : ("")
 				}

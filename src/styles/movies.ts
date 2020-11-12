@@ -8,7 +8,8 @@ const useStyles = makeStyles(() => createStyles({
 		height: "10%"
 	},
 	movieCards: {
-		height: "85%"
+		height: "95%",
+		padding: "0 20px 20px"
 	},
 	loader: {
 		height: "100%",

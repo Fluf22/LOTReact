@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
-import { CircularProgress, Grid, Typography } from '@material-ui/core';
+import { CircularProgress, Grid, Typography, useMediaQuery } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import { useMovies } from '../queries';
 import { usePagination } from '../hooks';
 import { Pagination } from '@material-ui/lab';
 import Movie from './movie';
 import useStyles from '../styles/movies';
+import { Helmet } from 'react-helmet';
 
 const Movies = () => {
+	const isMobile = useMediaQuery('(max-width:555px)');
 	const classes = useStyles();
 	const { isLoading, isError, error, data } = useMovies();
 	const {
@@ -26,8 +28,12 @@ const Movies = () => {
 
 	return (
 		<Grid container direction="column" className={classes.root} justify="space-between">
+			<Helmet>
+				<title>Movies - LOTReact</title>
+				<meta name="description" content="The Lord of the Rings famous movies" />
+			</Helmet>
 			<Grid item container direction="column" className={classes.movieCards} justify="space-around" alignItems="center">
-			{
+				{
 					isLoading ? (
 						<Grid item container justify="center" alignItems="center" className={classes.loader}>
 							<CircularProgress color="secondary" />
@@ -40,17 +46,17 @@ const Movies = () => {
 									<Typography className={classes.errorIcon}>Please reload the page</Typography>
 								</Grid>
 							) : (
-								movies.map((movie: any, idx: number) => (
-									<Movie key={idx} movie={movie} />
-								))
-							)
+									movies.map((movie: any, idx: number) => (
+										<Movie key={idx} movie={movie} />
+									))
+								)
 						)
 				}
 			</Grid>
 			{
 				isPaginationReady ? (
 					<Grid item container justify="center" alignItems="center" className={classes.pagination}>
-						<Pagination variant="text" color="primary" boundaryCount={2} count={pageCount} page={pageIndex} onChange={(_, page) => onPaginationChange(page)} />
+						<Pagination variant="text" color="primary" boundaryCount={isMobile ? 1 : 2} count={pageCount} page={pageIndex} onChange={(_, page) => onPaginationChange(page)} />
 					</Grid>
 				) : ("")
 			}

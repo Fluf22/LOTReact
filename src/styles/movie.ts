@@ -2,27 +2,37 @@ import { makeStyles, createStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => createStyles({
 	movieCard: {
-		width: "60%",
-		height: "90%",
-		minHeight: "540px",
-		minWidth: "700px"
+		width: "100%",
+		height: "100%"
 	},
 	cardRoot: {
 		height: "100%",
-		padding: "0"
+		padding: "0px !important",
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "space-between"
 	},
 	movieTitle: {
-		height: "25%",
-		padding: "20px"
+		padding: "20px",
+		flexWrap: "nowrap",
 	},
 	quoteCards: {
-		height: "65%"
+		overflowY: "auto",
+		justifyContent: "start",
+		alignItems: "center",
+		flexGrow: 1
+	},
+	quoteContainer: {
+		display: "flex",
+		flexDirection: "column",
+		height: "100%",
+		width: "100%"
 	},
 	quoteCard: {
-		width: "90%",
-		padding: "1.5%",
-		margin: "1.5%",
+		width: "calc(100% - 20px)",
+		margin: "10px",
 		display: "flex",
+		padding: "10px",
 		flexGrow: 1,
 		alignItems: "center"
 	},
