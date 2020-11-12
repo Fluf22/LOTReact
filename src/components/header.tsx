@@ -41,7 +41,7 @@ const Header = () => {
 						</Grid>
 						<Grid item container justify="flex-end" xs className={classes.installButtonContainer}>
 							{
-								!showInstallButton ? (
+								showInstallButton ? (
 									<Button color="primary" onClick={() => handleInstall()} variant="outlined" className={classes.installButton}>
 										Install
 										<CloudDownloadIcon className={classes.installButtonIcon} />
