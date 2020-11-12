@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { CircularProgress, Grid, Typography } from '@material-ui/core';
+import { CircularProgress, Grid, Typography, useMediaQuery } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import { useMovies } from '../queries';
 import { usePagination } from '../hooks';
@@ -8,6 +8,7 @@ import Movie from './movie';
 import useStyles from '../styles/movies';
 
 const Movies = () => {
+	const isMobile = useMediaQuery('(max-width:555px)');
 	const classes = useStyles();
 	const { isLoading, isError, error, data } = useMovies();
 	const {
@@ -50,7 +51,7 @@ const Movies = () => {
 			{
 				isPaginationReady ? (
 					<Grid item container justify="center" alignItems="center" className={classes.pagination}>
-						<Pagination variant="text" color="primary" boundaryCount={2} count={pageCount} page={pageIndex} onChange={(_, page) => onPaginationChange(page)} />
+						<Pagination variant="text" color="primary" boundaryCount={isMobile ? 1 : 2} count={pageCount} page={pageIndex} onChange={(_, page) => onPaginationChange(page)} />
 					</Grid>
 				) : ("")
 			}

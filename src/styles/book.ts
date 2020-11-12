@@ -2,7 +2,7 @@ import { makeStyles, createStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => createStyles({
 	bookCard: {
-		width: "60%",
+		width: "100%",
 		height: "100%"
 	},
 	cardRoot: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => createStyles({
 	},
 	chapterCard: {
 		width: "90%",
-		padding: "20px",
+		padding: "10px",
 		margin: "20px",
 		display: "flex",
 		flexGrow: 1,

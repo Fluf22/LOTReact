@@ -8,7 +8,8 @@ const useStyles = makeStyles(() => createStyles({
 		height: "10%"
 	},
 	bookCards: {
-		height: "85%"
+		height: "95%",
+		padding: "20px"
 	},
 	bookCard: {
 		width: "60%",

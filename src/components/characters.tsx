@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, Card, CardActions, CardContent, CircularProgress, Grid, TextField, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CircularProgress, Grid, TextField, Typography, useMediaQuery } from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import { useCharacters } from '../queries';
 import { Pagination } from '@material-ui/lab';
@@ -7,6 +7,7 @@ import { useFuzzySearch, usePagination } from '../hooks';
 import useStyles from '../styles/characters';
 
 const Characters = () => {
+	const isMobile = useMediaQuery('(max-width:555px)');
 	const classes = useStyles();
 	const { isLoading, isError, error, data } = useCharacters();
 	const { filteredData, onSearchTermChange } = useFuzzySearch(data?.docs ?? []);
@@ -81,7 +82,7 @@ const Characters = () => {
 			{
 				isPaginationReady ? (
 					<Grid item container justify="center" alignItems="center" className={classes.pagination}>
-						<Pagination variant="text" color="primary" boundaryCount={2} count={pageCount} page={pageIndex} onChange={(_, page) => onPaginationChange(page)} />
+						<Pagination variant="text" color="primary" boundaryCount={isMobile ? 1 : 2} count={pageCount} page={pageIndex} onChange={(_, page) => onPaginationChange(page)} />
 					</Grid>
 				) : ("")
 			}

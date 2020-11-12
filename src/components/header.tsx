@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { AppBar, Button, Grid, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Button, Grid, Toolbar, Typography, useMediaQuery } from '@material-ui/core';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import { useEventListener } from '../hooks';
 import useStyles from '../styles/header';
 
 const Header = () => {
-	const classes = useStyles();
+	const isMobile = useMediaQuery('(max-width:555px)');
+	const classes = useStyles(isMobile);
 	const [showInstallButton, setShowInstallButton] = useState<boolean>(false);
 
 	useEventListener("beforeinstallprompt", (event: any) => {
@@ -38,16 +39,20 @@ const Header = () => {
 							<img src="/logo192.png" height="64" alt="Lord of the rings related app logo" />
 							<Typography variant="h3" className={classes.title}>LOTReact</Typography>
 						</Grid>
-						<Grid item container justify="flex-end" xs>
+						<Grid item container justify="flex-end" xs className={classes.installButtonContainer}>
 							{
-								showInstallButton ? (
+								!showInstallButton ? (
 									<Button color="primary" onClick={() => handleInstall()} variant="outlined" className={classes.installButton}>
 										Install
 										<CloudDownloadIcon className={classes.installButtonIcon} />
 									</Button>
 								) : ("")
 							}
-							<Typography variant="h6" className={classes.moto}>The React to rule all the data</Typography>
+							{
+								isMobile ? ("") : (
+									<Typography variant="h6" className={classes.moto}>The React to rule all the data</Typography>
+								)
+							}
 						</Grid>
 					</Grid>
 				</Toolbar>
