@@ -16,6 +16,7 @@ This PWA have been deployed to Netlify.
 - React
 - React Router
 - React Queries
+- React Helmet
 - Material UI
 - Axios
 - Fuse.js
