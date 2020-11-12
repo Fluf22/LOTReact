@@ -6,6 +6,7 @@ import { usePagination } from '../hooks';
 import { Pagination } from '@material-ui/lab';
 import Book from './book';
 import useStyles from '../styles/books';
+import { Helmet } from 'react-helmet';
 
 const Books = () => {
 	const classes = useStyles();
@@ -26,6 +27,10 @@ const Books = () => {
 
 	return (
 		<Grid container direction="column" className={classes.root} justify="space-between">
+			<Helmet>
+				<title>Books - LOTReact</title>
+				<meta name="description" content="The Lord of the Rings Series" />
+			</Helmet>
 			<Grid item container direction="column" className={classes.bookCards} justify="space-around" alignItems="center">
 				{
 					isLoading ? (

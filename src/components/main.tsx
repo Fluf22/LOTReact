@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
+import { Helmet } from 'react-helmet';
 import useStyles from '../styles/main';
 
 const Main = () => {
@@ -7,6 +8,10 @@ const Main = () => {
 
 	return (
 		<Grid item container direction="column" className={classes.description} justify="space-around">
+			<Helmet>
+				<title>Home - LOTReact</title>
+				<meta name="description" content="Homepage of LOTReact" />
+			</Helmet>
 			<Grid item container direction="column" justify="space-evenly" className={classes.paragraph}>
 				<Grid item>
 					<Typography variant="h4">

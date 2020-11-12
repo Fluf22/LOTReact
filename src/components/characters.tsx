@@ -5,6 +5,7 @@ import { useCharacters } from '../queries';
 import { Pagination } from '@material-ui/lab';
 import { useFuzzySearch, usePagination } from '../hooks';
 import useStyles from '../styles/characters';
+import { Helmet } from 'react-helmet';
 
 const Characters = () => {
 	const isMobile = useMediaQuery('(max-width:555px)');
@@ -27,6 +28,10 @@ const Characters = () => {
 
 	return (
 		<Grid container direction="column" className={classes.root} justify="space-between">
+			<Helmet>
+				<title>Characters - LOTReact</title>
+				<meta name="description" content="List of LOTR characters" />
+			</Helmet>
 			<Grid item container direction="row" justify="space-between" className={classes.main}>
 				{
 					isLoading ? (
@@ -43,7 +48,7 @@ const Characters = () => {
 							) : (
 									<>
 										<Grid item container alignItems="center" className={classes.searchBar}>
-											<TextField id="character-fuzzy-search" type="search" label="Search character" variant="filled" color="secondary" className={classes.searchBarInput} onChange={({ target: { value: searchTerm }}) => onSearchTermChange(searchTerm)} />
+											<TextField id="character-fuzzy-search" type="search" label="Search character" variant="filled" color="secondary" className={classes.searchBarInput} onChange={({ target: { value: searchTerm } }) => onSearchTermChange(searchTerm)} />
 										</Grid>
 										<Grid item container direction="row" justify="space-between" className={classes.characterCards}>
 											{
